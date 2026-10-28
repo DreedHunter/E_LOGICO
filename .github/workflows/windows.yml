@@ -1,0 +1,27 @@
+name: Windows
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  headless:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configura
+        run: cmake --preset headless
+      - name: Compila
+        run: cmake --build --preset headless-debug
+      - name: Test
+        run: ctest --preset headless-debug
+
+  app:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configura (scarica JUCE e CLAP)
+        run: cmake --preset windows
+      - name: Compila
+        run: cmake --build --preset windows-release

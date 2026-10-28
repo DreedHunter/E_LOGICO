@@ -1,0 +1,15 @@
+/build/
+/out/
+/.vs/
+/.vscode/
+/.idea/
+CMakeUserPresets.json
+*.user
+*.suo
+*.aps
+compile_commands.json
+# Progetti Logic di esempio dell'utente: materiale privato, mai nel repository
+/ESEMPI_PROGETTOLOCIX_MAC/
+*.logicx/
+# SDK proprietari che non vanno mai committati
+/third_party/asiosdk*/

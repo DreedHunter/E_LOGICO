@@ -1,0 +1,58 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64"
+    },
+    {
+      "name": "vs2019",
+      "hidden": true,
+      "inherits": "base",
+      "generator": "Visual Studio 16 2019"
+    },
+    {
+      "name": "no-gui",
+      "hidden": true,
+      "cacheVariables": {
+        "ELOGICO_BUILD_GUI": "OFF",
+        "ELOGICO_WITH_CLAP": "OFF"
+      }
+    },
+    {
+      "name": "windows",
+      "displayName": "Windows x64, VS 2022 (completo, con GUI JUCE)",
+      "inherits": "base"
+    },
+    {
+      "name": "headless",
+      "displayName": "Windows x64, VS 2022, senza GUI (motore, modello, test)",
+      "inherits": ["no-gui", "base"]
+    },
+    {
+      "name": "windows-vs2019",
+      "displayName": "Windows x64, VS 2019 (completo, con GUI JUCE)",
+      "inherits": "vs2019"
+    },
+    {
+      "name": "headless-vs2019",
+      "displayName": "Windows x64, VS 2019, senza GUI",
+      "inherits": ["no-gui", "vs2019"]
+    }
+  ],
+  "buildPresets": [
+    { "name": "windows-debug", "configurePreset": "windows", "configuration": "Debug" },
+    { "name": "windows-release", "configurePreset": "windows", "configuration": "Release" },
+    { "name": "headless-debug", "configurePreset": "headless", "configuration": "Debug" },
+    { "name": "windows-vs2019-debug", "configurePreset": "windows-vs2019", "configuration": "Debug" },
+    { "name": "headless-vs2019-debug", "configurePreset": "headless-vs2019", "configuration": "Debug" }
+  ],
+  "testPresets": [
+    { "name": "headless-debug", "configurePreset": "headless", "configuration": "Debug", "output": { "outputOnFailure": true } },
+    { "name": "windows-debug", "configurePreset": "windows", "configuration": "Debug", "output": { "outputOnFailure": true } },
+    { "name": "headless-vs2019-debug", "configurePreset": "headless-vs2019", "configuration": "Debug", "output": { "outputOnFailure": true } }
+  ]
+}
